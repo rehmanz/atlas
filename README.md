@@ -23,7 +23,7 @@ gh auth login
 
 * Set an individual secret
 ```commandline
-gh secret set -e dev MYSECRET -b "foo" 
+gh secret set -e dev MYSECRET -b "foo"
 ```
 
 * Setup secrets from a file
