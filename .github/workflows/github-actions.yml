@@ -35,3 +35,4 @@ jobs:
       - name: Use secrets from previous step
         run: |
           echo "HAZ=${HAZ}"
+          echo "BAZ=${BAZ}"
