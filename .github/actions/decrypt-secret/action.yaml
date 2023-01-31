@@ -59,3 +59,4 @@ runs:
 
         echo "FOO=${FOO}"
         echo "BAR=${BAR}"
+        echo "GITHUB_ENV=${GITHUB_ENV}"
