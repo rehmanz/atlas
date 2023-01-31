@@ -23,4 +23,5 @@ runs:
         if [[ ! -e ./private_key.gpg ]]
         then
           echo "secret-file=${{ inputs.secret-file }}"
+          echo "secret-file=${{ inputs.gpg-private-key }}"
         fi
