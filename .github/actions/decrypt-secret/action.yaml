@@ -23,7 +23,7 @@ runs:
         echo "gpg-private-key=${{ inputs.gpg-private-key }}"
         echo "secret-file=${{ inputs.secret-file }}"
         which base64
-        
+
         if [[ ! -e ./private_key.gpg ]]
         then
           echo ${{ inputs.gpg-private-key }} | base64 -d > ./private_key.gpg
