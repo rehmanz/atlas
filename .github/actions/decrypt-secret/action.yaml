@@ -22,5 +22,5 @@ runs:
       run: |
         if [[ ! -e ./private_key.gpg ]]
         then
-          echo ${{ inputs.gpg-private-key }}
+          echo "Hello"
         fi
