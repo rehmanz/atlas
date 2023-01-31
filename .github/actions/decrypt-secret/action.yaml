@@ -20,4 +20,4 @@ runs:
   steps:
     - shell: bash
       run: |
-        echo ${{ inputs.gpg-private-key }} | base64 -d
+        which base64
