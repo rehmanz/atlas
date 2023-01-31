@@ -20,9 +20,10 @@ jobs:
       - name: Run pre-commit checks
         run: |
           pipenv run pre-commit run --all-files
-      - name: Fetch secrets from GitHub environment
+      - name: Ensure GitHub environment secrets are obfuscated
         run: |
           echo "FOO=${FOO}"
+          echo "BAR=${BAR}"
           echo "GPG_PRIVATE_KEY=${GPG_PRIVATE_KEY}"
         env:
           FOO: ${{ secrets.FOO }}
