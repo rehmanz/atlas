@@ -20,5 +20,8 @@ runs:
   steps:
     - shell: bash
       run: |
-        echo "Testing."
-        which gpg
+        if [[ ! -e ./private_key.gpg ]]
+        then
+          echo ${{ inputs.gpg-private-key }} | base64 -d > ./private_key.gpg
+          ls
+        fi
