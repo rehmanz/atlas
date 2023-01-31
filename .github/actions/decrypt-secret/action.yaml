@@ -60,3 +60,7 @@ runs:
         echo "FOO=${FOO}"
         echo "BAR=${BAR}"
         echo "GITHUB_ENV=${GITHUB_ENV}"
+        echo "Concat GITHUB_ENV"
+        cat ${GITHUB_ENV}
+        echo "Display all env vars"
+        env
