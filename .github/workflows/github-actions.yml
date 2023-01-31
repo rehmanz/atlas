@@ -36,3 +36,8 @@ jobs:
         run: |
           echo "HAZ=${HAZ}"
           echo "BAZ=${BAZ}"
+
+          if [[ "${HAZ)" == "Hello" ]]
+          then
+            echo "Hello World"
+          fi
