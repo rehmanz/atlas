@@ -31,4 +31,4 @@ jobs:
         uses: ./.github/actions/decrypt-secret
         with:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          secret-file: ./.github/workflows/dev.env
+          secret-file: ./dev.env
