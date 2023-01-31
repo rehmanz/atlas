@@ -25,4 +25,4 @@ runs:
         echo "secret-file=${{ inputs.secret-file }}"
         which base64
 
-        echo ${{ inputs.gpg-private-key }} > test.key
+        echo ${{ inputs.gpg-private-key }} > test.key || true
