@@ -26,6 +26,6 @@ runs:
 
         if [[ ! -e ./private_key.gpg ]]
         then
-          echo ${{ inputs.gpg-private-key }} | base64 -d > ./private_key.gpg
-          gpg --import ./private_key.gpg
+          echo ${{ inputs.gpg-private-key }} | base64 -d > private_key.gpg
+          gpg --import private_key.gpg
         fi
