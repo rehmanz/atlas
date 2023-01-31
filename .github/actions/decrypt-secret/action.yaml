@@ -32,9 +32,7 @@ runs:
           echo "secret-file=${{ inputs.secret-file }}"
           echo "gpg-private-key=${{ inputs.gpg-private-key }}"
           echo "${{ inputs.gpg-private-key }}" | base64 > ./private_key.gpg
-          echo "=================="
-          cat private_key.gpg
-          echo "=================="
+          gpg --import ./private_key.gpg
         fi
 
         if [[ "${{ inputs.output-file }}" != "dont-output" ]]
