@@ -26,6 +26,8 @@ runs:
 
         # Testing, that it worked:
         git secret --version
+        
+        base64 --help
 
         if [[ ! -e ./private_key.gpg ]]
         then
