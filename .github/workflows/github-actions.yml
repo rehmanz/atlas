@@ -3,6 +3,7 @@ on: [push]
 jobs:
   build_app:
     runs-on: ubuntu-latest
+    environment: dev
     timeout-minutes: 15
 
     steps:
@@ -23,4 +24,4 @@ jobs:
         run: |
           echo "FOO=${FOO}"
         env:
-          FOO: ${{ secrets.dev.FOO }}
+          FOO: ${{ secrets.FOO }}
