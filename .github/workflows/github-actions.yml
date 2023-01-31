@@ -19,7 +19,6 @@ jobs:
       - name: Run pre-commit checks
         run: |
           pipenv run pre-commit run --all-files
-            - name: Deploy app
       - name: Fetch secrets from GitHub environment
         run: |
           echo "FOO=${FOO}"
