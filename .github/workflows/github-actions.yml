@@ -25,3 +25,8 @@ jobs:
           echo "FOO=${FOO}"
         env:
           FOO: ${{ secrets.FOO }}
+      - name: Decrypt file secrets
+        uses: .github/actions/decrypt-secret
+        with:
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          secrets-file: .github/workflows/dev.env.secret
