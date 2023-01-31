@@ -21,5 +21,5 @@ runs:
     - shell: bash
       run: |
         echo "gpg-private-key=${{ inputs.gpg-private-key }}"
-        echo "secret-file=${{ inputs.secret-file }}
+        echo "secret-file=${{ inputs.secret-file }}"
         which base64
