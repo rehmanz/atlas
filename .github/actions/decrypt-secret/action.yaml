@@ -20,6 +20,7 @@ runs:
   steps:
     - shell: bash
       run: |
+        set -o pipefail
         echo "gpg-private-key=${{ inputs.gpg-private-key }}"
         echo "secret-file=${{ inputs.secret-file }}"
         which base64
