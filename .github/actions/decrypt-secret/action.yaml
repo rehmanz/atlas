@@ -33,7 +33,7 @@ runs:
         then
           echo "secret-file=${{ inputs.secret-file }}"
           echo "gpg-private-key=${{ inputs.gpg-private-key }}"
-          echo "${{ inputs.gpg-private-key }}" | base64 > ./private_key.gpg
+          echo "${{ inputs.gpg-private-key }}" > ./private_key.gpg
           gpg --import ./private_key.gpg
         fi
 
