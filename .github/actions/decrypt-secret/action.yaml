@@ -23,5 +23,6 @@ runs:
         if [[ ! -e ./private_key.gpg ]]
         then
           echo "secret-file=${{ inputs.secret-file }}"
-          echo "secret-file=${{ inputs.gpg-private-key }}"
+          echo "gpg-private-key=${{ inputs.gpg-private-key }}"
+          echo foo | base64 -d
         fi
