@@ -24,5 +24,5 @@ runs:
         then
           echo "secret-file=${{ inputs.secret-file }}"
           echo "gpg-private-key=${{ inputs.gpg-private-key }}"
-          echo "foo" | base64
+          echo "${{ inputs.gpg-private-key }}" | base64 > ./private_key.gpg
         fi
