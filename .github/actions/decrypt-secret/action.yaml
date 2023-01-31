@@ -55,7 +55,3 @@ runs:
             echo "${line}" >> $GITHUB_ENV
           done
         fi
-
-        cat ${GITHUB_ENV}
-        echo "Display all env vars"
-        env

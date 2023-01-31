@@ -32,7 +32,7 @@ jobs:
         with:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           secret-file: ./dev.env
-      - name: Use secrets from previous step
+      - name: Ensure file secrets are obfuscated
         run: |
           echo "HAZ=${HAZ}"
           echo "BAZ=${BAZ}"
