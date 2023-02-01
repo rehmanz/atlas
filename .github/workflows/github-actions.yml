@@ -47,7 +47,7 @@ jobs:
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
           secret-ids: |
-            dev/foo1
+            exampleSecretName
       - name: Ensure fetched secrets from SM are obfuscated
         run: |
-          echo "DEV_FOO1=${DEV_FOO1}"
+          echo "EXAMPLESECRETNAME=${EXAMPLESECRETNAME}"
