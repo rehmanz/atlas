@@ -37,3 +37,19 @@ jobs:
         run: |
           echo "HAZ=${HAZ}"
           echo "BAZ=${BAZ}"
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+      - name: Get secrets by name
+        uses: aws-actions/aws-secretsmanager-get-secrets@v1
+        with:
+          secret-ids: |
+            exampleSecretName
+            dev/baz
+      - name: Ensure fetched secrets from SM are obfuscated
+        run: |
+          echo "EXAMPLESECRETNAME=${EXAMPLESECRETNAME}"
+          echo "DEV_BAZ=${DEV_BAZ}"
