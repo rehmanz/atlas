@@ -48,3 +48,6 @@ jobs:
         with:
           secret-ids: |
             dev*
+      - name: Ensure fetched secrets from SM are obfuscated
+        run: |
+          echo "SM_FOO=${SM_FOO}"
