@@ -47,7 +47,8 @@ jobs:
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
           secret-ids: |
-            dev*
+            dev/foo
+            arn:aws:secretsmanager:us-east-1:119392233008:secret:dev/foo-Dfxheo
       - name: Ensure fetched secrets from SM are obfuscated
         run: |
-          echo "SM_FOO=${SM_FOO}"
+          echo "DEV_FOO=${DEV_FOO}"
