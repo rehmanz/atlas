@@ -3,6 +3,7 @@ on: [push]
 jobs:
   build_app:
     runs-on: ubuntu-latest
+    environment: dev
     timeout-minutes: 15
 
     steps:
@@ -19,3 +20,20 @@ jobs:
       - name: Run pre-commit checks
         run: |
           pipenv run pre-commit run --all-files
+      - name: Ensure GitHub environment secrets are obfuscated
+        run: |
+          echo "FOO=${FOO}"
+          echo "BAR=${BAR}"
+          echo "GPG_PRIVATE_KEY=${GPG_PRIVATE_KEY}"
+        env:
+          FOO: ${{ secrets.FOO }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+      - name: Decrypt file secrets
+        uses: ./.github/actions/decrypt-secret
+        with:
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          secret-file: ./dev.env
+      - name: Ensure file secrets are obfuscated
+        run: |
+          echo "HAZ=${HAZ}"
+          echo "BAZ=${BAZ}"

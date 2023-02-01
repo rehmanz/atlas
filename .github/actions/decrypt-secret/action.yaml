@@ -1,0 +1,53 @@
+name: 'Decrypt secret file'
+description: 'Decrypt git secret file into an environment variables or to a file'
+
+inputs:
+  gpg-private-key:
+    description: 'The GPG private key'
+    required: true
+
+  secret-file:
+    description: 'The secret file holding environment variables'
+    required: true
+
+  output-file:
+    description: 'The file path for outputting the secret content'
+    required: false
+    default: "dont-output"
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        echo "Install dependencies"
+        sudo sh -c "echo 'deb https://gitsecret.jfrog.io/artifactory/git-secret-deb git-secret main' >> /etc/apt/sources.list"
+        wget -qO - 'https://gitsecret.jfrog.io/artifactory/api/gpg/key/public' | sudo apt-key add -
+        sudo apt-get update && sudo apt-get install -y git-secret
+
+        if [[ ! -e ./private_key.gpg ]]
+        then
+          echo "secret-file=${{ inputs.secret-file }}"
+          echo "gpg-private-key=${{ inputs.gpg-private-key }}"
+          echo "${{ inputs.gpg-private-key }}" > ./private_key.gpg
+          gpg --import ./private_key.gpg
+        fi
+
+        if [[ "${{ inputs.output-file }}" != "dont-output" ]]
+        then
+          echo "Decrypting secret file '${{ inputs.secret-file }}' content into '${{ inputs.output-file }}'"
+          git secret reveal -f
+          secret_file="${{ inputs.secret-file }}"
+          secret_file="${secret_file%.secret}"
+          [[ "${secret_file}" = "${{ inputs.output-file }}" ]] || cp "${secret_file}" "${{ inputs.output-file }}"
+        else
+          echo "Decrypting secret file '${{ inputs.secret-file }}' content into environment variables"
+          git secret cat ${{ inputs.secret-file }} | grep -v '^#' | while read line
+          do
+            [[ -z "${line}" ]] && continue
+            if [ -n "${line#*=}" ]; then
+              echo "::add-mask::${line#*=}"
+            fi
+            echo "${line}" >> $GITHUB_ENV
+          done
+        fi
